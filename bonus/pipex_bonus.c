@@ -6,7 +6,7 @@
 /*   By: akashets <akashets@42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 12:24:23 by akashets          #+#    #+#             */
-/*   Updated: 2023/02/09 22:17:43 by akashets         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:26:19 by akashets         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	start_the_show(t_pipex p, char **argv, char **envp)
 	}	
 	if (p.pid > 0 && p.idd == p.ncmd - 1)
 	{
+		waitpid(-1, NULL, 0);
 		sub_dup2(p.pipe[2 * p.idd - 2], p.outfile);
 		ft_close(&p);
 		p.cmd_args = ft_split2(argv[2 + p.here_doc + p.idd]);
