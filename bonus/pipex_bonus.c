@@ -6,7 +6,7 @@
 /*   By: akashets <akashets@42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 12:24:23 by akashets          #+#    #+#             */
-/*   Updated: 2023/02/09 22:12:36 by akashets         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:17:43 by akashets         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ void	start_the_show(t_pipex p, char **argv, char **envp)
 			exit(127);
 		}
 		if (execve(p.cmd, p.cmd_args, envp) < 0)
-		{
-			p.err = 1;
 			exit(EXIT_FAILURE);
-		}
 	}	
 	if (p.pid > 0 && p.idd == p.ncmd - 1)
 	{
@@ -67,9 +64,7 @@ void	start_the_show(t_pipex p, char **argv, char **envp)
 			exit(127);
 		}
 		if (execve(p.cmd, p.cmd_args, envp) < 0)
-		{
 			exit(EXIT_FAILURE);
-		}
 	}
 }
 
@@ -92,7 +87,6 @@ int	main(int argc, char **argv, char **envp)
 	pipex.paths = find_path(envp, &pipex);
 	pipex.cmd_paths = ft_split(pipex.paths, ':');
 	create_pipes(&pipex);
-	pipex.err = 0;
 	pipex.idd = -1 + pipex.argc;
 	while (++(pipex.idd) < pipex.ncmd)
 		start_the_show(pipex, argv, envp);
