@@ -1,46 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akashets <akashets@42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/15 17:16:27 by akashets          #+#    #+#             */
-/*   Updated: 2023/01/18 13:38:31 by akashets         ###   ########.fr       */
+/*   Created: 2023/01/15 11:53:03 by akashets          #+#    #+#             */
+/*   Updated: 2023/01/16 10:57:41 by akashets         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../includes/pipex.h"
 
-void	parent_free(t_pipex *pipex)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (pipex->cmd_paths[i])
+	if (s)
 	{
-		free(pipex->cmd_paths[i]);
-		i++;
+		while (s[i])
+			i++;
 	}
-	free(pipex->cmd_paths);
+	return (i);
 }
 
-void	child_free(t_pipex *pipex)
+char	*ft_strdup(const char *src)
 {
-	int	i;
+	char	*str;
+	size_t	i;
 
 	i = 0;
-	while (pipex->cmd_args[i])
+	str = (char *)malloc(ft_strlen(src) + 1);
+	if (!str)
+		return (NULL);
+	while (src[i])
 	{
-		free(pipex->cmd_args[i]);
+		str[i] = src[i];
 		i++;
 	}
-	free(pipex->cmd);
-	free(pipex->cmd_args);
-}
-
-void	ft_close(t_pipex pipex)
-{
-	close(pipex.fd[0]);
-	close(pipex.fd[1]);
+	str[i] = '\0';
+	return (str);
 }

@@ -28,12 +28,12 @@
 # define ERR_PIPE "Pipe"
 # define ERR_CMD "command not found\n"
 
-typedef struct s_parsing {
+typedef struct s_split {
 	int		len;
 	int		i;
 	int		j;
 	int		count;
-}	t_parsing;
+}	t_split;
 
 typedef struct s_pipex {
 	pid_t	pid1;
@@ -61,12 +61,12 @@ char	*find_path(char **envp);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_get_cmd(char **paths, char *cmd);
 void	ft_close(t_pipex pipex);
-int		msg(char *err);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	single_quota(char *str, char **res, t_parsing *tab);
-void	double_quota(char *str, char **res, t_parsing *tab);
-void	space_case(char *str, char **res, t_parsing *tab);
+void	single_quota(char *str, char **res, t_split *tab);
+void	double_quota(char *str, char **res, t_split *tab);
+void	space_case(char *str, char **res, t_split *tab);
 int		ft_tab_len(char const *s, char c, int i);
-char	**parsing_str(const char *str);
+char	**ft_split2(const char *str);
+void	ft_print_err(char *s1, char *s2);
 
 #endif

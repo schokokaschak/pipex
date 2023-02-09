@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   child_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akashets <akashets@42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/15 17:16:27 by akashets          #+#    #+#             */
-/*   Updated: 2023/01/18 13:38:31 by akashets         ###   ########.fr       */
+/*   Created: 2023/01/14 12:34:48 by akashets          #+#    #+#             */
+/*   Updated: 2023/01/18 13:43:32 by akashets         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"../includes/pipex.h"
 
-void	parent_free(t_pipex *pipex)
+void	msg_err(char *err)
 {
-	int	i;
-
-	i = 0;
-	while (pipex->cmd_paths[i])
-	{
-		free(pipex->cmd_paths[i]);
-		i++;
-	}
-	free(pipex->cmd_paths);
+	perror(err);
+	exit(EXIT_FAILURE);
 }
 
-void	child_free(t_pipex *pipex)
+void	ft_print_err(char *s1, char *s2)
 {
-	int	i;
-
-	i = 0;
-	while (pipex->cmd_args[i])
-	{
-		free(pipex->cmd_args[i]);
-		i++;
-	}
-	free(pipex->cmd);
-	free(pipex->cmd_args);
-}
-
-void	ft_close(t_pipex pipex)
-{
-	close(pipex.fd[0]);
-	close(pipex.fd[1]);
+	ft_putname_fd(s1, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(s2, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(ERR_CMD, 2);
 }

@@ -6,7 +6,7 @@
 /*   By: akashets <akashets@42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 17:16:27 by akashets          #+#    #+#             */
-/*   Updated: 2023/01/19 12:14:59 by akashets         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:39:46 by akashets         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@ void	parent_free(t_pipex *pipex)
 	int	i;
 
 	i = 0;
+	close(pipex->infile);
+	close(pipex->outfile);
+	if (pipex->here_doc)
+		unlink(".heredoc_tmp");
 	while (pipex->cmd_paths[i])
 	{
 		free(pipex->cmd_paths[i]);
 		i++;
 	}
 	free(pipex->cmd_paths);
-	close(pipex->infile);
-	close(pipex->outfile);
+	free(pipex->pipe);
 }
 
 void	child_free(t_pipex *pipex)
@@ -39,18 +42,16 @@ void	child_free(t_pipex *pipex)
 	}
 	free(pipex->cmd);
 	free(pipex->cmd_args);
-	close(pipex->infile);
-	close(pipex->outfile);
 }
 
-void	msg_err(char *err)
+void	ft_close(t_pipex *pipex)
 {
-	perror(err);
-	exit(EXIT_FAILURE);
-}
+	int	i;
 
-void	ft_close(t_pipex pipex)
-{
-	close(pipex.fd[0]);
-	close(pipex.fd[1]);
+	i = 0;
+	while (i < (pipex->pipe_n))
+	{
+		close(pipex->pipe[i]);
+		i++;
+	}
 }
