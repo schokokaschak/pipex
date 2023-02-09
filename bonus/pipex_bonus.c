@@ -6,7 +6,7 @@
 /*   By: akashets <akashets@42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 12:24:23 by akashets          #+#    #+#             */
-/*   Updated: 2023/02/09 21:54:36 by akashets         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:12:36 by akashets         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,6 @@ int	main(int argc, char **argv, char **envp)
 		start_the_show(pipex, argv, envp);
 	ft_close(&pipex);
 	waitpid(-1, NULL, 0);
-	if (pipex.err)
-	{
-		parent_free(&pipex);
-		exit(127);
-	}
 	parent_free(&pipex);
 	return (0);
 }

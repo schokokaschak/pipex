@@ -6,7 +6,7 @@
 /*   By: akashets <akashets@42wolfsburg.de>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 12:25:15 by akashets          #+#    #+#             */
-/*   Updated: 2023/02/09 21:45:29 by akashets         ###   ########.fr       */
+/*   Updated: 2023/02/09 22:12:55 by akashets         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_pipex {
 	int		*pipe;
 	int		idd;
 	int		infile;
-	int		err;
 	int		outfile;
 	char	*paths;
 	int		here_doc;
